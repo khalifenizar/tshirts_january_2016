@@ -19,3 +19,10 @@ get "/" do
 
   erb(:tshirts)
 end
+
+get "/tshirts/:tshirt_id" do
+  @tshirt_id = params[:tshirt_id].to_i
+  @tshirt_type = inventory[@tshirt_id - 1]
+
+  erb(:tshirt_page)
+end
