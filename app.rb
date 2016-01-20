@@ -47,3 +47,19 @@ post "/add_to_cart" do
 
   redirect to("/")
 end
+
+get "/checkout" do
+  if session[:cart].nil?
+    session[:cart] = []
+  end
+
+  id_array = session[:cart]
+  @checkout_array = []
+
+  id_array.each do |id|
+    tshirt = inventory[id.to_i - 1]
+    @checkout_array.push(tshirt)
+  end
+
+  erb(:checkout)
+end
